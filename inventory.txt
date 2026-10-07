@@ -1,0 +1,8 @@
+Laptop Charger | Electronics | 8
+Printer Paper | Office Supplies | 25
+Pen | Office Supplies | 100
+Paper Clip Box | Office Supplies | 20
+Mouse | Electronics | 15
+128 GB USB | Electronics | 14
+USB-C Charger | Electronics | 5
+Tissue box | Personal Amenities | 10

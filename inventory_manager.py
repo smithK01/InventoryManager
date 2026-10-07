@@ -3,7 +3,8 @@ Author: Kalob Smith
 Course: CPS 310
 """
 
-INVENTORY = "inventory.txt"
+INVENTORY_FILE = "inventory.txt"
+
 
 def display_menu():
     """Display a menu for the user to navigate the program"""
@@ -20,60 +21,85 @@ def display_menu():
     print("\n")
     return
 
-#def load_inventory(filename):
+
+def load_inventory(filename):
+    """Check if filename exists, load it's contents.
+    Create inventory.txt if filename does not exist.
+    Return inventory"""
+
+    inventory = []
+
+    try:
+        with open(filename, 'r', encoding="utf-8") as file:
+            for line in file:
+                line = line.strip()
+                line_split = line.split("|")
+                inventory_line = {"name": line_split[0].strip(),
+                                  "category": line_split[1].strip(),
+                                  "quantity": int(line_split[2].strip())
+                                  }
+                inventory.append(inventory_line)
+
+    except FileNotFoundError:
+        # save_inventory(None, filename)
+        None # placeholder
+
+    return inventory
 
 
-#def save_inventory(inventory, filename):
+# def save_inventory(inventory, filename):
 
 
-#def view_inventory(inventory):
+def view_inventory(inventory):
+    for i in inventory:
+        print(i)
 
 
-#def add_item(inventory):
+# def add_item(inventory):
 
 
-#def update_quantity(inventory):
+# def update_quantity(inventory):
 
 
-#def remove_item(inventory):
+# def remove_item(inventory):
 
 
-#def search_inventory(inventory):
+# def search_inventory(inventory):
 
 
-#def display_summary(inventory):
+# def display_summary(inventory):
 
 
 def main():
+    """Main entry to program"""
 
-    # inventory = load_inventory(INVENTORY)
+    inventory = load_inventory(INVENTORY_FILE)
 
     while True:
         display_menu()
         choice = input("Choose an option: ").strip()
 
         if choice == "1":
-            #TODO: view inventory
-            None
+            view_inventory(inventory)
 
         elif choice == "2":
-            #TODO: add an item
+            # TODO: add an item
             None
 
         elif choice == "3":
-            #TODO: update an item quantity
+            # TODO: update an item quantity
             None
 
         elif choice == "4":
-            #TODO: remove an item
+            # TODO: remove an item
             None
 
         elif choice == "5":
-            #TODO: search inventory
+            # TODO: search inventory
             None
 
         elif choice == "6":
-            #TODO: view inventory summary
+            # TODO: view inventory summary
             None
 
         elif choice == "7":
