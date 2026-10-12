@@ -30,29 +30,49 @@ def load_inventory(filename):
     inventory = []
 
     try:
-        with open(filename, 'r', encoding="utf-8") as file:
+        with open(filename, "r", encoding="utf-8") as file:
             for line in file:
                 line = line.strip()
-                line_split = line.split("|")
-                inventory_line = {"name": line_split[0].strip(),
-                                  "category": line_split[1].strip(),
-                                  "quantity": int(line_split[2].strip())
-                                  }
-                inventory.append(inventory_line)
+                if line == "":
+                    continue
+                else:
+                    line_split = line.split("|")
+                    inventory_line = {
+                        "name": line_split[0].strip(),
+                        "category": line_split[1].strip(),
+                        "quantity": int(line_split[2].strip()),
+                    }
+                    inventory.append(inventory_line)
 
     except FileNotFoundError:
-        # save_inventory(None, filename)
-        None # placeholder
+        save_inventory("", filename)
 
     return inventory
 
 
-# def save_inventory(inventory, filename):
+def save_inventory(inventory, filename):
+    """Create a new inventory.txt file if none,
+    then write contents of list inventory to inventory.txt
+    """
+
+    # open/create inventory.txt
+    with open(filename, "w", encoding="utf-8") as file:
+
+        # for every dictionary in inventory[]
+        for line in inventory:
+            line_to_string = ""
+            line_to_string = f"{line['name']}|{line['category']}|{line['quantity']}\n"
+            file.write(line_to_string)
 
 
 def view_inventory(inventory):
-    for i in inventory:
-        print(i)
+    """For every dictionary in inventory, print to terminal"""
+
+    if not inventory:
+        print("No inventory items found.")
+    else:
+        for i, line in enumerate(inventory):
+            print(f"{i+1}. {line}")
 
 
 # def add_item(inventory):
@@ -73,6 +93,7 @@ def view_inventory(inventory):
 def main():
     """Main entry to program"""
 
+    # if inventory.txt exists, load it, else, create it
     inventory = load_inventory(INVENTORY_FILE)
 
     while True:
@@ -84,7 +105,9 @@ def main():
 
         elif choice == "2":
             # TODO: add an item
-            None
+            
+            save_inventory(inventory, INVENTORY_FILE)
+
 
         elif choice == "3":
             # TODO: update an item quantity
