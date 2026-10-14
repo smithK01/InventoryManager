@@ -75,7 +75,55 @@ def view_inventory(inventory):
             print(f"{i+1}. {line}")
 
 
-# def add_item(inventory):
+def add_item(inventory):
+    """Ask user for name, category, and quantity of an item.
+    create dictionary of item, and append to inventory.txt"""
+
+    is_good_input = False
+
+    while True:
+        print("Enter the name of the item: ")
+        new_item_name = input().strip()
+        for i in inventory:
+            if i["name"].lower() == new_item_name.lower():
+                print(f"{new_item_name} already found in inventory")
+                break
+        if new_item_name == "" or "|" in new_item_name:
+            print("Invalid name")
+            continue
+        else:
+            print(f"Enter the category {new_item_name} belongs to: ")
+            new_item_category = input().strip()
+
+            if new_item_category == "" or "|" in new_item_category:
+                print("Invalid category")
+                continue
+            else:
+                quantity_loop = True
+                while quantity_loop == True:
+                    print(f"Enter the quantity of {new_item_name}(s): ")
+                    new_item_amount = input().strip()
+                    try:
+                        int_new_item_amount = int(new_item_amount)
+                        if int_new_item_amount < 0:
+                            raise ValueError
+                        is_good_input = True
+                        quantity_loop = False
+                    except ValueError:
+                        print(
+                            "Please enter a whole number greater than or equal to zero."
+                        )
+                        continue
+        if is_good_input == True:
+            new_inventory_item = {
+                "name": new_item_name,
+                "category": new_item_category,
+                "quantity": int_new_item_amount,
+            }
+            inventory.append(new_inventory_item)
+            print(f"{new_inventory_item} added to inventory.")
+            save_inventory(inventory, INVENTORY_FILE)
+            return 
 
 
 # def update_quantity(inventory):
@@ -104,10 +152,7 @@ def main():
             view_inventory(inventory)
 
         elif choice == "2":
-            # TODO: add an item
-            
-            save_inventory(inventory, INVENTORY_FILE)
-
+            add_item(inventory)
 
         elif choice == "3":
             # TODO: update an item quantity
