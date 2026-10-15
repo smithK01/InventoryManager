@@ -84,13 +84,14 @@ def add_item(inventory):
     while True:
         print("Enter the name of the item: ")
         new_item_name = input().strip()
+        if new_item_name == "" or "|" in new_item_name:
+            print("Invalid name")
+            continue
         for i in inventory:
             if i["name"].lower() == new_item_name.lower():
                 print(f"{new_item_name} already found in inventory")
                 break
-        if new_item_name == "" or "|" in new_item_name:
-            print("Invalid name")
-            continue
+        
         else:
             print(f"Enter the category {new_item_name} belongs to: ")
             new_item_category = input().strip()
@@ -123,10 +124,42 @@ def add_item(inventory):
             inventory.append(new_inventory_item)
             print(f"{new_inventory_item} added to inventory.")
             save_inventory(inventory, INVENTORY_FILE)
-            return 
+            return
 
 
-# def update_quantity(inventory):
+def update_quantity(inventory):
+    """Update a quantity of an item in inventory, then save updated
+    quantity to inventory"""
+
+    if not inventory:
+        print("inventory empty.")
+        return
+
+    while True:
+        view_inventory(inventory)
+        selection = input("Enter the item number to update: ")
+        try:
+            selection = int(selection)
+            if selection > len(inventory) or selection <= 0:
+                raise ValueError
+        except ValueError:
+            print("Please enter a valid integer.")
+            continue
+
+        quantity_change = input("Enter the new quantity: ")
+        try:
+            quantity_change = int(quantity_change)
+            if quantity_change < 0:
+                print("please enter a non negative quantity")
+                raise ValueError
+        except ValueError:
+            print("Please enter a valid, non negative integer.")
+            continue
+        selected_item = inventory[selection - 1]
+        selected_item["quantity"] = quantity_change
+        save_inventory(inventory, INVENTORY_FILE)
+        print(f"{selected_item["name"]}(s) quantity updated to {quantity_change}")
+        return
 
 
 # def remove_item(inventory):
@@ -155,8 +188,7 @@ def main():
             add_item(inventory)
 
         elif choice == "3":
-            # TODO: update an item quantity
-            None
+            update_quantity(inventory)
 
         elif choice == "4":
             # TODO: remove an item
