@@ -45,7 +45,7 @@ def load_inventory(filename):
                     inventory.append(inventory_line)
 
     except FileNotFoundError:
-        save_inventory("", filename)
+        save_inventory(inventory, filename)
 
     return inventory
 
@@ -60,7 +60,6 @@ def save_inventory(inventory, filename):
 
         # for every dictionary in inventory[]
         for line in inventory:
-            line_to_string = ""
             line_to_string = f"{line['name']}|{line['category']}|{line['quantity']}\n"
             file.write(line_to_string)
 
@@ -91,7 +90,7 @@ def add_item(inventory):
             if i["name"].lower() == new_item_name.lower():
                 print(f"{new_item_name} already found in inventory")
                 break
-        
+
         else:
             print(f"Enter the category {new_item_name} belongs to: ")
             new_item_category = input().strip()
@@ -150,7 +149,6 @@ def update_quantity(inventory):
         try:
             quantity_change = int(quantity_change)
             if quantity_change < 0:
-                print("please enter a non negative quantity")
                 raise ValueError
         except ValueError:
             print("Please enter a valid, non negative integer.")
@@ -162,7 +160,28 @@ def update_quantity(inventory):
         return
 
 
-# def remove_item(inventory):
+def remove_item(inventory):
+    """Remove an item from inventory, confirm removed item, save to inventory"""
+
+    view_inventory(inventory)
+    if not inventory:
+        return
+
+    while True:
+        selected_item = input("Enter the item number to remove: ")
+        try:
+            selected_item = int(selected_item)
+            if selected_item > len(inventory) or selected_item <= 0:
+                raise ValueError
+
+        except ValueError:
+            print("Enter a valid inventory number.")
+            continue
+
+        item_to_remove = inventory.pop(selected_item - 1)
+        save_inventory(inventory, INVENTORY_FILE)
+        print(f"Item removed: {item_to_remove["name"]}")
+        return
 
 
 # def search_inventory(inventory):
@@ -191,8 +210,7 @@ def main():
             update_quantity(inventory)
 
         elif choice == "4":
-            # TODO: remove an item
-            None
+            remove_item(inventory)
 
         elif choice == "5":
             # TODO: search inventory
