@@ -71,7 +71,10 @@ def view_inventory(inventory):
         print("No inventory items found.")
     else:
         for i, line in enumerate(inventory):
-            print(f"{i+1}. {line}")
+            # :< , :> left align and right align
+            print(
+                f"{i+1}. {line["name"]:<20} | {line["category"]:<20} | Quantity: {line["quantity"]:>5}"
+            )
 
 
 def add_item(inventory):
@@ -195,7 +198,6 @@ def search_inventory(inventory):
     item_found = False
     item_matches = []
 
-    
     search_query = input("\nSearch: ").strip()
     if search_query != "":
         for i in inventory:
@@ -205,7 +207,6 @@ def search_inventory(inventory):
     else:
         print("Please enter a valid search.")
         return
-        
 
     if item_found:
         print(f"\n{search_query}(s) found:")
@@ -246,7 +247,6 @@ def display_summary(inventory):
         if int(i["quantity"]) < 5:
             low_stock_items = low_stock_items + 1
 
-
     print("Inventory Summary")
     print(f"Unique items: {unique_items}")
     print(f"Total quantity: {total_items}")
@@ -255,8 +255,6 @@ def display_summary(inventory):
     print("Items by category:")
     for category in categories:
         print(f"{category}: {categories[category]}")
-        
-
 
 
 def main():
