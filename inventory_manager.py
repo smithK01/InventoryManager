@@ -184,7 +184,36 @@ def remove_item(inventory):
         return
 
 
-# def search_inventory(inventory):
+def search_inventory(inventory):
+    """Search inventory dictionaries for exact and partial matching names.
+    Display error message if no items match the search."""
+
+    if not inventory:
+        print("Inventory empty.")
+        return
+
+    item_found = False
+    item_matches = []
+
+    
+    search_query = input("\nSearch: ").strip()
+    if search_query != "":
+        for i in inventory:
+            if search_query.lower() in i["name"].lower():
+                item_found = True
+                item_matches.append(i)
+    else:
+        print("Please enter a valid search.")
+        return
+        
+
+    if item_found:
+        print(f"\n{search_query}(s) found:")
+        view_inventory(item_matches)
+    else:
+        print(f"No {search_query}(s) found.")
+
+    return
 
 
 # def display_summary(inventory):
@@ -213,8 +242,7 @@ def main():
             remove_item(inventory)
 
         elif choice == "5":
-            # TODO: search inventory
-            None
+            search_inventory(inventory)
 
         elif choice == "6":
             # TODO: view inventory summary
