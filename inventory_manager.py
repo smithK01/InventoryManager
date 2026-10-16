@@ -216,7 +216,47 @@ def search_inventory(inventory):
     return
 
 
-# def display_summary(inventory):
+def display_summary(inventory):
+    """display a summary of inventory, listing unique items, total quantity
+    items below 5 quantity, and items by category"""
+
+    total_items = 0
+    unique_items = 0
+    low_stock_items = 0
+    categories = {}
+    unique_item_names = []
+
+    if not inventory:
+        print("Inventory empty")
+
+    for i in inventory:
+
+        total_items = total_items + int(i["quantity"])
+
+        if i["name"].lower() not in unique_item_names:
+            unique_item_names.append(i["name"].lower())
+            unique_items = unique_items + 1
+
+        category = i["category"].lower()
+        if category not in categories:
+            categories[category] = 1
+        else:
+            categories[category] += 1
+
+        if int(i["quantity"]) < 5:
+            low_stock_items = low_stock_items + 1
+
+
+    print("Inventory Summary")
+    print(f"Unique items: {unique_items}")
+    print(f"Total quantity: {total_items}")
+    print(f"Low-stock items: {low_stock_items}")
+    print("\n")
+    print("Items by category:")
+    for category in categories:
+        print(f"{category}: {categories[category]}")
+        
+
 
 
 def main():
@@ -245,8 +285,7 @@ def main():
             search_inventory(inventory)
 
         elif choice == "6":
-            # TODO: view inventory summary
-            None
+            display_summary(inventory)
 
         elif choice == "7":
             print("\nGoodbye!\n")
