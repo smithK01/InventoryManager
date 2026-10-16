@@ -14,7 +14,7 @@ AI was also used to fix spelling, to clean up, and verify accuracy of documentat
 
 ## Example Prompts
 
-1. "I don't want you to write any code for me unless I get stuck or have a syntax issue, just help me with overall ideas, as well as making sure i meet the project requirements."
+1. "I don't want you to write any code for me unless I get stuck or have a syntax issue, just help me with overall ideas, as well as making sure i meet the project requirements." - my initial prompt, attached with my starting code, file structure, and program requirements.
 2. "does this fix the duplicate name issue?" - submitted with my revised add_item function.
 3. "verify these tests work as intended, and give me the results. perform your own tests as well, and give me those results." - with my attached code/tests
 

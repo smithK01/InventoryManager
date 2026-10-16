@@ -40,6 +40,7 @@ Names and categories cannot be empty, or contain the pipe ( | ) character. Quant
 While running the program stores inventory as a list of dictionaries. Each dictionary has name, category, and quantity keys, with quantity being stored as an integer.
 
 #### Ex:
+```
 Laptop Charger|Electronics|8
 Printer Paper|Office Supplies|25
 Pen|Office Supplies|100
@@ -48,21 +49,35 @@ Mouse|Electronics|15
 128 GB USB|Electronics|14
 USB-C Charger|Electronics|4
 Tissue box|Personal Amenities|10
-
+```
 ## Running The Program
-Using Powershell on Windows 10:
-1. download, or clone this repository:
-- git clone https://github.com/smithK01/InventoryManager.git
-- cd InventoryManager
+
+Using PowerShell on Windows 10:
+
+1. Clone this repository:
+
+   ```powershell
+   git clone https://github.com/smithK01/InventoryManager.git
+   cd InventoryManager
+   ```
+
 2. Confirm Python version is 3.12 or newer:
-- py --version
+
+   ```powershell
+   py --version
+   ```
+
 3. Start the program:
-- py inventory_manager.py
 
-    if that doesn't work, try:
+   ```powershell
+   py inventory_manager.py
+   ```
 
-- python inventory_manager.py
+   If the `py` command is unavailable, try:
 
+   ```powershell
+   python inventory_manager.py
+   ```
 ## Menu Options
 | Option | Action |
 |---|---|
@@ -75,7 +90,7 @@ Using Powershell on Windows 10:
 | 7. Exit | Display a goodbye message and end the program. |
 
 ## Sample Interaction
-
+```
 python inventory_manager.py
 
 Inventory Manager
@@ -95,6 +110,7 @@ Search: ChArGeR
 ChArGeR(s) found:
 1. Laptop Charger       | Electronics          | Quantity:     8
 2. USB-C Charger        | Electronics          | Quantity:     4
+```
 
 ## Testing Summary
 TESTING.md documents 14 different cases covering:
