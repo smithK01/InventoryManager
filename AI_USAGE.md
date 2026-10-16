@@ -35,7 +35,7 @@ I modified the suggested column widths for view_inventory(). I chose widths of 2
 
 I used almost no AI generated code. I only used AI to verify my code, or to provide correct syntax/structuring of my code. Python documentation was used to verify anything too convoluted.
 
-AI assisted documentation draftwork/advice was taken from the AI, verified against my code and my own results, so I could write my documentation to be accurate and my own work.
+AI assisted documentation draftwork/advice was taken from the AI, and verified against my code and my own results, so I could write my documentation to be accurate and my own work.
 
 ## Code Understanding
 
