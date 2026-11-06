@@ -35,7 +35,7 @@ def sample_inventory():
 
 
 def test_load_inventory_from_valid_file(tmp_path, sample_inventory):
-    """load an expected dict from inv file"""
+    """load an expected list of dicts from inv file"""
 
     # Arrange
     inventory_file = tmp_path / "inventory.txt"

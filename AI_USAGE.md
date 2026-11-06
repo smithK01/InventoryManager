@@ -52,7 +52,10 @@ I was really proud of doing this one completely alone, and then only asking the 
 # HW 2:
 
 ## Testing and refactoring
-AI assistance was used to confirm testing that I did myself first as a sanity check. AI only assisted in debugging durring refactoring, all other refactoring work was done myself.
+- AI assistance was used to confirm testing that I did myself first as a sanity check. AI only assisted in debugging durring refactoring, all other refactoring work was done myself.
+- I created initial test placeholders, and worked on every single test. AI helped with understanding fixtures and parameterization, and then helped my debug tests, and suggested example tests that I integrated. I asked for help with some of the tests, because I wanted to do every example from the instruction, but some of them needed a bit of explaining for me to get right. I had ChatGPT write it's own version of tests for test_inventory_manager.py, which I compared to my own, which I then used to implement better tests, variable names and fixes.
+- I ran the 48 tests I made, and all pass on Windows 10 Python 3.13.3
+- AI ran it's own 48 tests, and those all passed on Linux Python 3.12.14.
 
 ## Prompts
 1. lets work on refactoring so we can test easier. do you see any standout issues i need to fix for testability?
@@ -64,6 +67,12 @@ AI assistance was used to confirm testing that I did myself first as a sanity ch
 ## Suggestions accepted
 ChatGPT suggested the function names, and helped with some doc strings to make sure they came accross the right way. It also suggested better variable names when I made them too convoluted.
 
+I also used AI provided sample data ammounts/dictionaries, like ({"name": "Laptop Charger", "category": "Electronics", "quantity": 4},
+        {"name": "USB-C Charger", "category": "electronics", "quantity": 5},
+        {"name": "Pen", "category": "Office Supplies", "quantity": 10},
+        {"name": "Notebook", "category": "Office Supplies", "quantity": 0})
+simply because it was faster to give it some items, and for it to make a list of random stuff that I could then work with.
+
 I also accepeted suggestions like:
 - The tuple order and placement after the loop are now correct. The remaining issue is the empty-inventory result. Your display guard prevents the crash, but HW2 requires the calculation helper to return correct summary values for an empty inventory. With your current five-value tuple, that result should be: (0, 0, 0, {}, []) Remove the early return None. Your initialized variables already contain those values, and an empty inventory simply skips the loop before reaching the tuple construction. The display function can still check whether inventory is empty and print “No inventory found.” That display decision doesn’t require the calculation helper to return None. Also, your tuple approach is valid—you can remove the TODO. The initial summary_tuple = () assignment is unnecessary because you assign the completed tuple before returning it.
 - Yes—the responsibilities are now separated correctly: the helper returns validated data, and the wrapper appends and saves it There’s one important testability issue: quantity.strip() requires a string. A direct call with an integer quantity, such as 5, would raise AttributeError. Remove that cleanup line; your existing int(quantity) already handles integers and numeric strings with surrounding whitespace. Two remaining cleanup items: Update the helper docstring. It returns a new item dictionary or an error code, rather than an appended inventory. Flatten the remaining else blocks. They work, but are unnecessary. Category validation can follow the duplicate-checking loop directly, and quantity validation can follow the category check. Earlier failures already return. Your error branches correctly repeat the input loop, and successful input gets appended exactly once
@@ -74,3 +83,9 @@ I also accepeted suggestions like:
 
 ## Independent verification of results and code
 
+- I ran the 48 tests I made, and all pass on Windows 10 Python 3.13.3. 
+- I refactored Inventory_manager.py completely myself, with AI debugging help and review.
+- I wrote the documentation, and AI reviewed it and fact checked me, where I reviewed what it was attempting to clarify.
+- I created the initial test placeholders, AI helped with the fixtures, parameterization and test body starting points before I filled them all the way out. Some AI sample data (as stated above), test variable names, a few test structures, and a few fixed assertions remain in the final version after I reviewed them.
+- After refactoring, I went through and made sure the program still worked as before.
+- Anything that went into the inventory_manager project was either my own, or something that I fully understood. 
