@@ -111,7 +111,7 @@ def add_item(inventory):
 # add_item() helper
 def validate_new_item(inventory, name, category, quantity):
     """validate input of new item name, category, and quantity
-    Return error values if invalid, otherwise return appended inventory"""
+    Return error values if invalid, otherwise return new_inventory_item dictionary"""
 
     name = name.strip()
     category = category.strip()
@@ -296,7 +296,6 @@ def calculate_summary(inventory):
     low_stock_items = 0
     categories = {}
     unique_item_names = []
-    summary_tuple = ()
 
     if not inventory:
         summary_tuple = (unique_items, total_items, low_stock_items, categories, unique_item_names)
@@ -319,7 +318,6 @@ def calculate_summary(inventory):
         if int(i["quantity"]) < 5:
             low_stock_items = low_stock_items + 1
 
-    # TODO: a better way to return these values?
     summary_tuple = (unique_items, total_items, low_stock_items, categories, unique_item_names)
 
     return summary_tuple

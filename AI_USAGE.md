@@ -1,5 +1,9 @@
 # AI Usage Report
 
+## -----------------
+
+# HW 1:
+
 ## Tools Used
 
 ChatGPT-6.1 Sol max reasoning, ChatGPT-6 Astra max reasoning
@@ -45,3 +49,22 @@ list inventory, we create a formatted string per dictionary, with all three valu
 
 ### search_inventory()
 I was really proud of doing this one completely alone, and then only asking the AI to help me with syntax issues like ( if search_query.lower() in i["name"].lower() ), where .lower() was originally .lower, and i["name"] was originally i[i["name"]]. The function works by first checking if the inventory is empty, then by creating an empty list item_matches that we use to store item matches later. then, if the users input is not empty/whitespace, for each dictionary in inventory, we look through the "name" keys in lowercase to find partial and full matches. if we have a partial or full match, item_found is True, and we append that item to the item_matches list. when finished iterating through the dictionaries, if we found any matches, print the search, and then call view_inventory with our list item_matches, so we have some nice formatted output. otherwise we return with the error message.
+
+## -----------------
+
+# HW 2:
+
+## Testing and refactoring
+AI assistance was used to confirm testing that I did myself first as a sanity check. AI only assisted in debugging durring refactoring, all other refactoring work was done myself.
+
+## Prompts
+1. lets work on refactoring so we can test easier. do you see any standout issues i need to fix for testability?
+2. here is my attempt at refactoring search_inventory(), did I miss anything important? (followed by the function)
+3. im having a difficult time thinking about how i am going to move all of the input validation in add_item(). Because i have so many nested if else's. 
+- 3's response: The key is to keep retrying input in add_item() and move the validation rules into a helper that checks one set of values Use early returns: when a check fails, return immediately. Later checks can then sit at the same indentation instead of inside another else.
+## Suggestions accepted
+
+## Suggestions rejected or modified
+
+## Independent verification of results and code
+
