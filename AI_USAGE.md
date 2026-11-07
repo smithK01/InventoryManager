@@ -86,6 +86,6 @@ I also accepeted suggestions like:
 - I ran the 48 tests I made, and all pass on Windows 10 Python 3.13.3. 
 - I refactored Inventory_manager.py completely myself, with AI debugging help and review.
 - I wrote the documentation, and AI reviewed it and fact checked me, where I reviewed what it was attempting to clarify.
-- I created the initial test placeholders, AI helped with the fixtures, parameterization and test body starting points before I filled them all the way out. Some AI sample data (as stated above), test variable names, a few test structures, and a few fixed assertions remain in the final version after I reviewed them.
+- I created the initial test placeholders, AI helped with the fixtures, parameterization and test body starting points before I filled them all the way out. Some AI sample data (as stated above), test variable names, a few test structures, and a few fixed assertions remain in the final version after I reviewed and edited them.
 - After refactoring, I went through and made sure the program still worked as before.
 - Anything that went into the inventory_manager project was either my own, or something that I fully understood. 

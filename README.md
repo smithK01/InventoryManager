@@ -29,6 +29,7 @@ Inventory Manager is a commandline Python program that tracks items by name, cat
 | `TESTING.md` | Documents 14 test cases, expected results, actual results, and pass/fail outcomes. |
 | `AI_USAGE.md` | Discloses AI assistance, accepted or modified suggestions, verification, and code understanding. |
 | `.gitignore` | Specifies files and folders Git should ignore, such as Python caches and virtual environments. |
+| `test_inventory_manager.py` | Contains unit tests for inventory_manager. |
 
 ## Inventory Data Format
 
@@ -112,7 +113,7 @@ ChArGeR(s) found:
 2. USB-C Charger        | Electronics          | Quantity:     4
 ```
 
-## Testing Summary
+## Testing Summary HW1
 TESTING.md documents 14 different cases covering:
 - Missing and empty inventory files.
 - Adding valid items and rejecting blank or duplicate names.
@@ -146,3 +147,16 @@ The search feature used the feature/inventory-search branch, GitHub issue #1 des
 - Add a loop to the search_inventory function, so the user can repeat a search without needing to go back to the menu.
 - Allow editing names and categories.
 - Add sorting and category filters to view_inventory
+
+## Testing Summary HW2
+
+```With the project's virtual environment activated, install pytest:
+python -m pip install pytest
+
+Run the complete regression suite:
+
+python -m pytest -v
+
+This testing suite has 20 test functions that cover 48 different cases. It covers loading, saving, searching, removing, quantity updates, new items, summary calculations etc.
+
+Tests use an inventory fixture, parameterization with ID's, and temp files through tmp_path. File tests use temporary inventory files. TESTING.md is now depreciated, and only contains the HW1 manual testing record.
